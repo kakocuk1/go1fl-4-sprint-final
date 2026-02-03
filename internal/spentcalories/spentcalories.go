@@ -20,7 +20,7 @@ const (
 func parseTraining(data string) (int, string, time.Duration, error) { // Принимает данные и выводит значения шагов, вида активности, продолжительности
 	parts := strings.Split(data, ",") // Step 1: Разделить строку на слайс строк + проверить длинну
 	if len(parts) != 3 {
-		return 0, "", 0, errors.New("Неверный формат данных")
+		return 0, "", 0, errors.New("неверный формат данных")
 	}
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
@@ -136,7 +136,7 @@ func TrainingInfo(data string, weight, height float64) (string, error) { // Ин
 			"Длительность: %.2f ч.\n"+
 			"Дистанция: %.2f км.\n"+
 			"Скорость: %.2f км/ч\n"+
-			"Сожгли калорий: %.2f",
+			"Сожгли калорий: %.2f\n",
 		activity,
 		durationInHours,
 		dist,
