@@ -22,15 +22,23 @@ func parseTraining(data string) (int, string, time.Duration, error) { // При�
 	if len(parts) != 3 {
 		return 0, "", 0, errors.New("неверный формат данных")
 	}
+
 	steps, err := strconv.Atoi(parts[0])
 	if err != nil {
 		return 0, "", 0, err
 	}
+	if steps <= 0 {
+		return 0, "", 0, errors.New("количество шагов должно быть больше нуля")
+	}
+
 	activity := parts[1] // Step 2: указали откуда брать вид активности
 
 	duration, err := time.ParseDuration(parts[2])
 	if err != nil {
 		return 0, "", 0, err
+	}
+	if duration <= 0 {
+		return 0, "", 0, errors.New("продолжительность должна бать больше нуля")
 	}
 	return steps, activity, duration, nil
 }
